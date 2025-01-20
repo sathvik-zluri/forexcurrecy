@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const ratesData = require("../data/exchange_rates.json");
+const ratesData = require("../data/exchange_rates_inr_to_other_currencies.json");
 
 // GET /api/v1/ratesininr/:date/:currency
 router.get("/:date/:currency", (req, res) => {
@@ -24,11 +24,9 @@ router.get("/:date/:currency", (req, res) => {
   // Check if the currency exists for the date
   const currencyRate = dateData[currency];
   if (!currencyRate) {
-    return res
-      .status(404)
-      .json({
-        error: `No rate available for currency: ${currency} on ${date}`,
-      });
+    return res.status(404).json({
+      error: `No rate available for currency: ${currency} on ${date}`,
+    });
   }
 
   // Respond with the rate
