@@ -18,14 +18,14 @@ router.get("/:date/:currency", (req, res) => {
   if (!dateData) {
     return res
       .status(404)
-      .json({ error: `No data available for date: ${date}` });
+      .json({ error: `No exchange rate data available for this: ${date}` });
   }
 
   // Check if the currency exists for the date
   const currencyRate = dateData[currency];
   if (!currencyRate) {
     return res.status(404).json({
-      error: `No rate available for currency: ${currency} on ${date}`,
+      error: `No exchange rate data available for currency: ${currency} on ${date}`,
     });
   }
 
